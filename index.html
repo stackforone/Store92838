@@ -108,7 +108,7 @@
 
         .card-content h3 {
             margin: 0;
-            font-size: 15px;
+            font-size: 16px;
             color: #333;
         }
 
@@ -148,6 +148,12 @@
             font-size: 18px;
             margin-bottom: 5px;
         }
+  
+        .amount {
+    color: #000; /* สีดำเข้ม */
+    font-weight: bold; /* ตัวหนา */
+    font-size: 14px; /* ขนาดใหญ่ */
+}
     </style>
 </head>
 <body>
@@ -217,13 +223,13 @@
     const card = document.createElement('div');
     card.className = 'card';
     card.innerHTML = `
-        <div class="card-icon"><i class="fas ${icon}"></i></div>
-        <div class="card-content">
-            <h3>ID ร้านค้า: ${item.id}</h3>
-            <p>ชื่อผู้ใช้งาน: ${item.name}</p>
-            <p>ยอดเงิน: ฿${item.amount.toLocaleString()}</p>
-        </div>
-    `;
+    <div class="card-icon"><i class="fas ${icon}"></i></div>
+    <div class="card-content">
+        <h3>ID ร้านค้า: ${item.id}</h3>
+        <p>ชื่อผู้ใช้งาน: ${item.name}</p>
+        <p>ยอดเงิน: <span class="amount">฿${item.amount.toLocaleString()}</span></p>
+    </div>
+`;
     container.appendChild(card);
 });
     }
