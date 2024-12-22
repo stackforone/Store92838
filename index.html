@@ -1,253 +1,409 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* รีเซ็ตค่าพื้นฐาน */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Modern UI</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Prompt', sans-serif;
+    }
 
-        body {
-            font-family: 'Prompt', sans-serif;
-            background: linear-gradient(to bottom, #8a2be2, #e75480);
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100vh;
+      background-color: #111;
+      color: #fff;
+    }
 
-        /* Header */
-        /* Header */
-header {
-    background: linear-gradient(to right, #6a11cb, #ff007f);
-    color: white;
-    padding: 10px 20px; /* ลด Padding */
-    display: flex;
-    flex-direction: column; /* จัดเรียงแบบแนวตั้ง */
-    align-items: flex-start; /* จัดข้อความไปทางซ้าย */
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    header {
+      background-color: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #333;
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    header .logo i {
+      font-size: 30px;
+      margin-right: 10px;
+    }
+
+    header .search-bar {
+      flex: 1;
+      margin: 0 15px;
+      position: relative;
+    }
+
+    header .search-bar input {
+      width: 100%;
+      padding: 8px 40px 8px 15px;
+      border: 1px solid #444;
+      border-radius: 20px;
+      background-color: #222;
+      color: #fff;
+    }
+
+    header .search-bar .fa-search {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      color: #666;
+    }
+
+    header .user-menu {
+      display: flex;
+      align-items: center;
+    }
+
+    header .user-menu i {
+      font-size: 22px;
+      margin-left: 15px;
+      cursor: pointer;
+    }
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* ให้แน่ใจว่า body ครอบคลุมเต็มหน้า */
+  overflow-y: scroll; /* บังคับการเลื่อนแนวตั้ง */
+  -webkit-overflow-scrolling: touch; /* ปรับปรุงการเลื่อนบนมือถือ */
+}
+    main {
+  flex: 1;
+  overflow-y: auto;
+  gap: 20px;
+  padding: 3px 15px 15px; /* ลดระยะห่างด้านบน */
 }
 
-header h1 {
-    font-size: 1.2rem; /* ลดขนาดฟอนต์ */
-    margin-bottom: 5px; /* เพิ่มระยะห่างระหว่างหัวข้อกับแถบค้นหา */
+.video-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  border-radius: 15px;
+  overflow: hidden;
+  background-color: #222;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
-header .header-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
+.video-header {
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-header .back-button,
-header .add-friend {
-    font-size: 1.2rem;
-    cursor: pointer;
+.video-header .profile {
+  display: flex;
+  align-items: center;
 }
 
-header .search-bar {
-    margin-top: 5px; /* ลดระยะห่างด้านบน */
-    width: 100%;
-    display: flex;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 8px 15px;
-    border-radius: 20px;
+.video-header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
-header .search-bar input {
-    flex: 1;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: white;
-    font-size: 0.9rem; /* ลดขนาดฟอนต์ในแถบค้นหา */
-    padding: 5px;
+.video-header .username {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
 }
+
+.video-body {
+  position: relative;
+}
+
+.video-body video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.play-pause-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 50px;
+  color: white;
+  opacity: 0; /* เริ่มต้นที่ซ่อน */
+  pointer-events: none; /* ป้องกันการคลิก */
+  transition: opacity 0.5s ease; /* เพิ่มการเปลี่ยนแปลงแบบลื่นไหล */
+}
+
+.play-pause-icon.show {
+  opacity: 1; /* แสดงไอคอน */
+}
+
+.video-body video:active + .play-pause-icon {
+  display: block;
+}
+
+.video-footer {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #333;
+}
+
+.video-footer .likes {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.video-header .video-title {
+  font-size: 16px; /* ลดขนาด Title */
+  color: #aaa; /* ปรับสี Title */
+  font-weight: 400; /* น้ำหนักตัวอักษร */
+  margin-top: 2px; /* เพิ่มระยะห่างจาก username */
+}
+
+.video-header .username {
+  font-size: 14px; /* ลดขนาดข้อความ */
+  color: #ccc; /* ปรับสี */
+  font-weight: 500; /* น้ำหนักตัวอักษร */
+}
+
+.video-footer .actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.video-footer .actions .action-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.video-footer .actions .action-item i {
+  font-size: 20px;
+  color: #ccc;
+}
+
+.video-footer .actions .action-item span {
+  font-size: 13px;
+  color: #ccc;
+}
+
+.video-body video {
+  outline: none; /* ลบเส้นขอบ */
+  box-shadow: none; /* ลบเงา */
+  -webkit-tap-highlight-color: transparent; /* ลบสีเน้นเมื่อคลิกในมือถือ */
+}
+
+.video-body video:focus,
+.video-body video:active {
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+    /* footer ให้ติดอยู่ด้านล่าง */
+footer {
+  position: sticky;
+  bottom: 0;
+  background-color: #222;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid #333;
+}
+
+footer a {
+  text-decoration: none;
+  color: #fff; /* เปลี่ยนข้อความเป็นสีเทาสว่าง */
+  text-align: center;
+  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: color 0.3s; /* เพิ่มการเปลี่ยนสีแบบ smooth */
+}
+
+footer i {
+  font-size: 20px;
+  margin-bottom: 5px;
   
-  header .search-bar input::placeholder {
-    color: white; /* เปลี่ยนสีข้อความ Placeholder เป็นสีขาว */
-    opacity: 1;   /* ทำให้ข้อความ Placeholder ชัดเจน */
-    font-family: 'Prompt', sans-serif;
 }
 
-header .search-bar i {
-    color: white;
+footer a:hover {
+  color: #ff005c; /* สีชมพูสดใสเมื่อ hover */
 }
 
-        /* Friends List Container */
-        .friends-container {
-            flex: 1;
-            padding: 130px 20px 20px; /* ระยะจาก Header */
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            overflow-y: auto;
-        }
+/* ออกแบบปุ่มบวกให้เด่น */
+.add-button {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color: #8e44ad;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  margin-top: -30px; /* ยกขึ้นมาให้ดูเด่น */
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
-        .section-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .friend {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 15px;
-            cursor: pointer;
-            transition: transform 0.2s ease, background 0.3s ease;
-        }
-
-        .friend:hover {
-            transform: scale(1.02);
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .friend img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            border: 2px solid white;
-        }
-
-        .friend .info {
-            flex: 1;
-        }
-
-        .friend .info h3 {
-            font-size: 15px;
-            margin-bottom: 5px;
-        }
-
-        .friend .info p {
-            font-size: 0.8rem;
-            color: #ddd;
-        }
-
-        .friend .action {
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .friend .action:hover {
-            color: #ff007f;
-        }
-  
-        footer {
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 15px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 60px;
-            border-top: 1px solid #ddd;
-        }
-
-        footer .menu {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 11px;
-            cursor: pointer;
-            transition: transform 0.2s ease, color 0.2s ease;
-            margin-top: 5px;
-        }
-
-        footer .menu i {
-            font-size: 19px;
-            margin-bottom: 5px;
-        }
-
-        footer .menu.active, footer .menu:hover {
-            color: #ff007f;
-            transform: scale(1.2);
-            font-size: 9px;
-        }
-    </style>
+.add-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.7);
+}
+  </style>
 </head>
 <body>
-    <header>
-    <div class="header-row">
-        <i class="fas fa-arrow-left back-button"></i>
-        <h1>รายชื่อคู่รัก</h1>
-        <i class="fas fa-user-plus add-friend"></i>
+  <header>
+    <div class="logo">
+      <i class=""></i> Videa
     </div>
     <div class="search-bar">
-        <input type="text" id="search-friends" placeholder="ค้นหาเพื่อน...">
-        <i class="fas fa-search"></i>
+      <input type="text" placeholder="Search">
+      <i class="fas fa-search"></i>
     </div>
-</header>
-    <div class="friends-container">
-        <div class="section-title">ออนไลน์</div>
-        <div class="friend">
-            <img src="https://via.placeholder.com/45" alt="User Profile">
-            <div class="info">
-                <h3>Film Piyapong</h3>
-                <p>กำลังใช้งาน</p>
-            </div>
-            <i class="fas fa-comment-dots action"></i>
-        </div>
-        <div class="friend">
-            <img src="https://via.placeholder.com/45" alt="User Profile">
-            <div class="info">
-                <h3>ทดสอบระบบ</h3>
-                <p>พิมพ์ข้อความ...</p>
-            </div>
-            <i class="fas fa-comment-dots action"></i>
-        </div>
-        <div class="section-title">ออฟไลน์</div>
-        <div class="friend">
-            <img src="https://via.placeholder.com/45" alt="User Profile">
-            <div class="info">
-                <h3>ทดสอบระบบ</h3>
-                <p>ออฟไลน์</p>
-            </div>
-            <i class="fas fa-comment-dots action"></i>
-        </div>
+    <div class="user-menu">
+      <i class="fas fa-bell"></i>
+      <i class="fas fa-cog"></i>
     </div>
+  </header>
   
-    <footer>
-        <div class="menu active">
-            <i class="fas fa-home"></i>
-            <span>หน้าแรก</span>
+  
+
+  <main>
+  <div class="video-container">
+    <!-- ส่วนหัวของวิดีโอ -->
+    <div class="video-header">
+      <div class="profile">
+        <img src="https://via.placeholder.com/40" alt="Profile">
+        <div>
+          <span class="username">@user1</span>
+          <span class="video-title">ทดสอบระบบ</span>
         </div>
-        <div class="menu">
-            <i class="fas fa-users"></i>
-            <span>หาคู่</span>
+      </div>
+      <i class="fas fa-ellipsis-h"></i>
+    </div>
+
+    <!-- วิดีโอ -->
+    <div class="video-body">
+      <video id="video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+      <div class="play-pause-icon" id="playPauseIcon">
+        <i class="fas fa-play"></i>
+      </div>
+    </div>
+
+    <!-- ส่วนท้ายของวิดีโอ -->
+    <div class="video-footer">
+      <div class="actions">
+        <div class="action-item">
+          <i class="fas fa-heart"></i><span>120</span>
         </div>
-        <div class="menu">
-            <i class="fas fa-plus-circle"></i>
-            <span>โพสต์</span>
+        <div class="action-item">
+          <i class="fas fa-comment"></i><span>45</span>
         </div>
-        <div class="menu">
-            <i class="fas fa-envelope"></i>
-            <span>ข้อความ</span>
+        <div class="action-item">
+          <i class="fas fa-share"></i><span>30</span>
         </div>
-        <div class="menu">
-            <i class="fas fa-cog"></i>
-            <span>ตั้งค่า</span>
+      </div>
+      <span class="likes">100 Likes</span>
+    </div>
+  </div>
+    <div class="video-container">
+    <!-- ส่วนหัวของวิดีโอ -->
+    <div class="video-header">
+      <div class="profile">
+        <img src="https://via.placeholder.com/40" alt="Profile">
+        <div>
+          <span class="username">@user1</span>
+          <span class="video-title">This is a video title</span>
         </div>
-    </footer>
+      </div>
+      <i class="fas fa-ellipsis-h"></i>
+    </div>
+
+    <!-- วิดีโอ -->
+    <div class="video-body">
+      <video id="video" src="https://www.w3schools.com/html/mov_bbb.mp4"></video>
+      <div class="play-pause-icon" id="playPauseIcon">
+        <i class="fas fa-play"></i>
+      </div>
+    </div>
+
+    <!-- ส่วนท้ายของวิดีโอ -->
+    <div class="video-footer">
+      <div class="actions">
+        <div class="action-item">
+          <i class="fas fa-heart"></i><span>120</span>
+        </div>
+        <div class="action-item">
+          <i class="fas fa-comment"></i><span>45</span>
+        </div>
+        <div class="action-item">
+          <i class="fas fa-share"></i><span>30</span>
+        </div>
+      </div>
+      <span class="likes">100 Likes</span>
+    </div>
+  </div>
+</main>
+
+  <footer>
+    <a href="#"><i class="fas fa-home"></i>หน้าเเรก</a>
+    <a href="#"><i class="fas fa-search"></i>ค้นหา</a>
+    <a href="#" class="add-button"><i class="fas fa-plus"></i></a>
+    <a href="#"><i class="fas fa-inbox"></i>ข้อความ</a>
+    <a href="#"><i class="fas fa-user"></i>โปรไฟล์</a>
+  </footer>
+  
+  <script>
+  const videos = document.querySelectorAll('video');
+const playPauseIcons = document.querySelectorAll('.play-pause-icon');
+
+// วนลูปเพื่อเพิ่ม event listener ให้กับแต่ละวิดีโอ
+videos.forEach((video, index) => {
+  const playPauseIcon = playPauseIcons[index];
+  video.addEventListener('click', () => {
+    if (video.paused) {
+      video.play();
+      playPauseIcon.innerHTML = '<i class="fas fa-pause"></i>';
+    } else {
+      video.pause();
+      playPauseIcon.innerHTML = '<i class="fas fa-play"></i>';
+    }
+
+    // แสดงไอคอนชั่วคราว
+    playPauseIcon.classList.add('show');
+    setTimeout(() => {
+      playPauseIcon.classList.remove('show');
+    }, 1000);
+  });
+});
+  </script>
 </body>
 </html>
