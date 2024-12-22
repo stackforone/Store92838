@@ -1,256 +1,253 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaction Requests</title>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+    <title></title>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* General Styles */
-        body {
-            font-family: 'Kanit', sans-serif;
+        /* รีเซ็ตค่าพื้นฐาน */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-            padding-bottom: 60px; /* เว้นพื้นที่ด้านล่าง */
+            box-sizing: border-box;
         }
 
-        header {
-            background-color: #fff;
-            color: red;
-            text-align: center;
-            padding: 15px 0;
-            font-size: 22px;
-            font-weight: 500;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 12px;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        }
-  
-        .page h2{
-            font-size: 17px;
-        }
-
-        .nav {
+        body {
+            font-family: 'Prompt', sans-serif;
+            background: linear-gradient(to bottom, #8a2be2, #e75480);
+            color: #fff;
             display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            gap: 10px;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
-        .nav button {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: 500;
-            color: white;
-            background: linear-gradient(135deg, #d32f2f, #b71c1c, #910000);    
-            transition: all 0.3s ease;
-            font-family: 'Kanit', sans-serif;
+        /* Header */
+        /* Header */
+header {
+    background: linear-gradient(to right, #6a11cb, #ff007f);
+    color: white;
+    padding: 10px 20px; /* ลด Padding */
+    display: flex;
+    flex-direction: column; /* จัดเรียงแบบแนวตั้ง */
+    align-items: flex-start; /* จัดข้อความไปทางซ้าย */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 
+header h1 {
+    font-size: 1.2rem; /* ลดขนาดฟอนต์ */
+    margin-bottom: 5px; /* เพิ่มระยะห่างระหว่างหัวข้อกับแถบค้นหา */
+}
+
+header .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+header .back-button,
+header .add-friend {
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+header .search-bar {
+    margin-top: 5px; /* ลดระยะห่างด้านบน */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 20px;
+}
+
+header .search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    font-size: 0.9rem; /* ลดขนาดฟอนต์ในแถบค้นหา */
+    padding: 5px;
+}
+  
+  header .search-bar input::placeholder {
+    color: white; /* เปลี่ยนสีข้อความ Placeholder เป็นสีขาว */
+    opacity: 1;   /* ทำให้ข้อความ Placeholder ชัดเจน */
+    font-family: 'Prompt', sans-serif;
+}
+
+header .search-bar i {
+    color: white;
+}
+
+        /* Friends List Container */
+        .friends-container {
+            flex: 1;
+            padding: 130px 20px 20px; /* ระยะจาก Header */
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
         }
 
-        .nav button:hover {
-            background-color: #0056b3;
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
         }
 
-        .nav button.active {
-            background-color: #0056b3;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .card {
+        .friend {
             display: flex;
             align-items: center;
-            gap: 20px;
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            gap: 12px;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.3s ease;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        .friend:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.3);
         }
 
-        .card-icon {
+        .friend img {
             width: 45px;
             height: 45px;
-            background: linear-gradient(135deg, #b22222, #8b0000, #660000);  
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             border-radius: 50%;
-            font-size: 24px;
-            flex-shrink: 0;
+            border: 2px solid white;
         }
 
-        .card-content {
+        .friend .info {
             flex: 1;
         }
 
-        .card-content h3 {
-            margin: 0;
-            font-size: 16px;
-            color: #333;
-        }
-
-        .card-content p {
-            margin: 5px 0;
-            color: #666;
-            font-size: 13px;
-        }
-
-        .no-data {
-            text-align: center;
-            color: #666;
-            font-size: 18px;
-        }
-  
-        .menu {
-            display: flex;
-            justify-content: space-around;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: white;
-            padding: 10px 0;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .menu a {
-            text-decoration: none;
-            color: #333;
-            font-size: 12px;
-            text-align: center;
-        }
-
-        .menu a i {
-            display: block;
-            font-size: 18px;
+        .friend .info h3 {
+            font-size: 15px;
             margin-bottom: 5px;
         }
+
+        .friend .info p {
+            font-size: 0.8rem;
+            color: #ddd;
+        }
+
+        .friend .action {
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .friend .action:hover {
+            color: #ff007f;
+        }
   
-        .amount {
-    color: #000; /* สีดำเข้ม */
-    font-weight: bold; /* ตัวหนา */
-    font-size: 14px; /* ขนาดใหญ่ */
-}
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 15px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            border-top: 1px solid #ddd;
+        }
+
+        footer .menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 11px;
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
+            margin-top: 5px;
+        }
+
+        footer .menu i {
+            font-size: 19px;
+            margin-bottom: 5px;
+        }
+
+        footer .menu.active, footer .menu:hover {
+            color: #ff007f;
+            transform: scale(1.2);
+            font-size: 9px;
+        }
     </style>
 </head>
 <body>
-
-<header>มีผู้ใช้จำนวนมาก !!</header>
-
-<div class="container">
-    <div class="nav">
-        <button onclick="showPage('topup')" id="btn-topup" class="active">คำขอเติมเงิน</button>
-        <button onclick="showPage('withdraw')" id="btn-withdraw">คำขอถอนเงิน</button>
+    <header>
+    <div class="header-row">
+        <i class="fas fa-arrow-left back-button"></i>
+        <h1>รายชื่อคู่รัก</h1>
+        <i class="fas fa-user-plus add-friend"></i>
     </div>
-
-    <div id="topup" class="page">
-        <h2>คำขอเติมเงิน</h2>
-        <div id="topup-list"></div>
+    <div class="search-bar">
+        <input type="text" id="search-friends" placeholder="ค้นหาเพื่อน...">
+        <i class="fas fa-search"></i>
     </div>
-
-    <div id="withdraw" class="page" style="display: none;">
-        <h2>คำขอถอนเงิน</h2>
-        <div id="withdraw-list"></div>
+</header>
+    <div class="friends-container">
+        <div class="section-title">ออนไลน์</div>
+        <div class="friend">
+            <img src="https://via.placeholder.com/45" alt="User Profile">
+            <div class="info">
+                <h3>Film Piyapong</h3>
+                <p>กำลังใช้งาน</p>
+            </div>
+            <i class="fas fa-comment-dots action"></i>
+        </div>
+        <div class="friend">
+            <img src="https://via.placeholder.com/45" alt="User Profile">
+            <div class="info">
+                <h3>ทดสอบระบบ</h3>
+                <p>พิมพ์ข้อความ...</p>
+            </div>
+            <i class="fas fa-comment-dots action"></i>
+        </div>
+        <div class="section-title">ออฟไลน์</div>
+        <div class="friend">
+            <img src="https://via.placeholder.com/45" alt="User Profile">
+            <div class="info">
+                <h3>ทดสอบระบบ</h3>
+                <p>ออฟไลน์</p>
+            </div>
+            <i class="fas fa-comment-dots action"></i>
+        </div>
     </div>
-</div>
   
-  <div class="menu">
-        <a href="shopping_mall.html">
-            <i class="las la-home fs-20 opacity-60"></i> Mall
-        </a>
-        <a href="dashboard.html">
-            <i class="las la-tachometer-alt fs-20 opacity-60"></i> ควบคุม
-        </a>
-        <a href="shop.html">
-            <i class="las la-shopping-bag la-2x text-white"></i> สินค้า
-        </a>
-        <a href="#">
-            <i class="las la-bell fs-20 opacity-60"></i> การแจ้งเตือน
-        </a>
-        <a href="menu.html">
-            <i class="las la-user"></i> ฉัน
-        </a>
-    </div>
-
-<script>
-    // Sample data
-    const topupRequests = [
-        { id: '001', name: 'ท่าน *** ***', amount: 6750000 },
-        { id: '002', name: 'คุณ *** ***', amount: 3800 },
-        { id: '003', name: 'นาย *** ***', amount: 8900 },
-        { id: '004', name: 'นาย *** *** ', amount: 440000 },
-    ];
-
-    const withdrawRequests = [
-        { id: '004', name: 'สมศักดิ์ เงินดี', amount: 500 },
-        { id: '005', name: 'สมทรง มั่งมี', amount: 700 }
-    ];
-
-    // Render lists
-    function renderRequests(listId, data, icon) {
-        const container = document.getElementById(listId);
-        container.innerHTML = '';
-
-        if (data.length === 0) {
-            container.innerHTML = '<p class="no-data">ไม่มีรายการ</p>';
-            return;
-        }
-
-        data.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'card';
-    card.innerHTML = `
-    <div class="card-icon"><i class="fas ${icon}"></i></div>
-    <div class="card-content">
-        <h3>ID ร้านค้า: ${item.id}</h3>
-        <p>ชื่อผู้ใช้งาน: ${item.name}</p>
-        <p>ยอดเงิน: <span class="amount">฿${item.amount.toLocaleString()}</span></p>
-    </div>
-`;
-    container.appendChild(card);
-});
-    }
-
-    // Switch between pages
-    function showPage(pageId) {
-        document.querySelectorAll('.page').forEach(page => {
-            page.style.display = 'none';
-        });
-        document.querySelectorAll('.nav button').forEach(btn => {
-            btn.classList.remove('active');
-        });
-
-        document.getElementById(pageId).style.display = 'block';
-        document.getElementById(`btn-${pageId}`).classList.add('active');
-    }
-
-    // Initial render
-    renderRequests('topup-list', topupRequests, 'fa-wallet');
-    renderRequests('withdraw-list', withdrawRequests, 'fa-hand-holding-usd');
-</script>
-
+    <footer>
+        <div class="menu active">
+            <i class="fas fa-home"></i>
+            <span>หน้าแรก</span>
+        </div>
+        <div class="menu">
+            <i class="fas fa-users"></i>
+            <span>หาคู่</span>
+        </div>
+        <div class="menu">
+            <i class="fas fa-plus-circle"></i>
+            <span>โพสต์</span>
+        </div>
+        <div class="menu">
+            <i class="fas fa-envelope"></i>
+            <span>ข้อความ</span>
+        </div>
+        <div class="menu">
+            <i class="fas fa-cog"></i>
+            <span>ตั้งค่า</span>
+        </div>
+    </footer>
 </body>
 </html>
