@@ -6,6 +6,7 @@
   <title>โปรไฟล์</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -80,7 +81,7 @@
       color: #ccc;
       line-height: 1.6;
       padding: 0 5px;
-      margin-top: -10px;
+      margin-top: -3px;
     }
 
     .profile-stats {
@@ -207,55 +208,64 @@
     }
 
     footer {
-      position: sticky;
-      bottom: 0;
-      background-color: #000;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 10px 0;
-      border-top: 1px solid #333;
-    }
+    position: sticky;
+    bottom: 0;
+    background-color: #111;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #333;
+  }
 
-    footer a {
-      text-decoration: none;
-      color: #fff;
-      text-align: center;
-      font-size: 11px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  .menu-item {
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: color 0.3s ease;
+  }
 
-    footer i {
-      font-size: 20px;
-      margin-bottom: 5px;
-    }
+  .menu-item .icon {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
 
-    footer a:hover {
-      color: #ff416c;
-    }
-  
-    .add-button {
-      position: relative;
-      width: 60px;
-      height: 60px;
-      background-color: #8e44ad;
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 26px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-      margin-top: -30px;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+  .menu-item.active .icon {
+    color: #8e44ad;
+  }
 
-    .add-button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.7);
-    }
+  .menu-item:hover .icon {
+    color: #ff005c;
+  }
+
+  .add-button {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background-color: #8e44ad;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    transform: translateY(-20%);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .add-button:hover {
+    transform: translateY(-30%) scale(1.1);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.7);
+  }
+
+  footer span {
+    font-size: 11px;
+  }
   </style>
 </head>
 <body>
@@ -267,7 +277,7 @@
   <div class="profile-header">
     <div class="cover-photo"></div>
     <div class="profile-pic"></div>
-    <div class="username">@user123</div>
+    <div class="username">@ฟีม</div>
     <div class="bio">ยินดีต้อนรับสู่โปรไฟล์ของฉัน!</div>
   </div>
 
@@ -277,11 +287,11 @@
       <label>โพสต์</label>
     </div>
     <div class="stat">
-      <span>3.1M</span>
+      <span>9.5M</span>
       <label>ผู้ติดตาม</label>
     </div>
     <div class="stat">
-      <span>0</span>
+      <span>1</span>
       <label>กำลังติดตาม</label>
     </div>
   </div>
@@ -295,20 +305,47 @@
     <div class="highlight">Story 1</div>
     <div class="highlight">Story 2</div>
     <div class="highlight">Story 3</div>
+    <div class="highlight">Story 4</div>
   </div>
 
   <div class="posts-grid">
     <div class="post"><img src="https://via.placeholder.com/150" alt="Post"></div>
     <div class="post"><img src="https://via.placeholder.com/150" alt="Post"></div>
     <div class="post"><img src="https://via.placeholder.com/150" alt="Post"></div>
+    <div class="post"><img src="https://via.placeholder.com/150" alt="Post"></div>
+    <div class="post"><img src="https://via.placeholder.com/150" alt="Post"></div>
+    <div class="post"><img src="https://via.placeholder.com/150" alt="Post"></div>
+ 
   </div>
   
   <footer>
-    <a href="#"><i class="fas fa-home"></i>หน้าเเรก</a>
-    <a href="#"><i class="fas fa-search"></i>ค้นหา</a>
-    <a href="#" class="add-button"><i class="fas fa-plus"></i></a>
-    <a href="#"><i class="fas fa-inbox"></i>ข้อความ</a>
-    <a href="#"><i class="fas fa-user"></i>โปรไฟล์</a>
-  </footer>
+  <a href="#" class="menu-item active">
+    <div class="icon">
+      <i class="fa-solid fa-house"></i>
+    </div>
+    <span>หน้าแรก</span>
+  </a>
+  <a href="#" class="menu-item">
+    <div class="icon">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </div>
+    <span>ค้นหา</span>
+  </a>
+  <a href="#" class="add-button">
+    <i class="fa-solid fa-circle-plus"></i>
+  </a>
+  <a href="#" class="menu-item">
+    <div class="icon">
+      <i class="fa-solid fa-comments"></i>
+    </div>
+    <span>ข้อความ</span>
+  </a>
+  <a href="#" class="menu-item">
+    <div class="icon">
+      <i class="fa-solid fa-user"></i>
+    </div>
+    <span>โปรไฟล์</span>
+  </a>
+</footer>
 </body>
 </html>
