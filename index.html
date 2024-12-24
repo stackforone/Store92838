@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>โปรไฟล์</title>
+  <title>โปรไฟล์ผู้สร้างแอป</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -16,339 +15,231 @@
     }
 
     body {
-      background-color: #121212;
+      background-color: #111;
       color: #fff;
-      overflow-x: hidden;
+      padding: 20px;
     }
 
-    header {
-      background-color: #1e1e1e;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid #333;
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #222;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     }
 
-    header .back-button {
-      font-size: 18px;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    header .title {
-      font-size: 17px;
-      font-weight: bold;
-    }
-
-    .profile-header {
-      position: relative;
+    .header {
+      background: linear-gradient(135deg, #8e44ad, #4a0072);
+      padding: 20px;
       text-align: center;
-      padding: 3px 5px;
     }
 
-    .profile-header .cover-photo {
-      width: 100%;
-      height: 200px;
-      background: #000;
-      position: relative;
-    }
-
-    .profile-header .profile-pic {
+    .header img {
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      border: 4px solid #fff;
-      background-color: #333;
-      position: absolute;
-      top: 150px;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      border: 3px solid #fff;
+      margin-bottom: 10px;
     }
 
-    .profile-header .username {
+    .header h2 {
       font-size: 22px;
-      font-weight: bold;
-      margin: 60px 0 5px;
-      margin-top: 25px;
+      margin-bottom: 5px;
     }
 
-    .profile-header .bio {
+    .header p {
       font-size: 14px;
-      color: #ccc;
-      line-height: 1.6;
-      padding: 0 5px;
-      margin-top: -3px;
+      color: #ddd;
     }
 
-    .profile-stats {
-      display: flex;
-      justify-content: space-between;
-      margin: 20px 20px;
-      padding: 15px 10px;
-      background-color: #1e1e1e;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    .profile-stats .stat {
-      text-align: center;
-      flex: 1;
-    }
-
-    .profile-stats .stat:not(:last-child) {
-      border-right: 1px solid #333;
-    }
-
-    .profile-stats .stat span {
-      font-size: 17px;
-      font-weight: bold;
-      color: #fff;
-    }
-
-    .profile-stats .stat label {
-      font-size: 13px;
-      color: #aaa;
-      margin-top: -1px;
-      display: block;
-    }
-
-    .profile-actions {
+    .stats {
       display: flex;
       justify-content: space-around;
-      margin: 15px 20px;
-      gap: 10px;
+      padding: 20px;
+      background-color: #333;
+      border-top: 1px solid #444;
     }
 
-    .profile-actions button {
-      flex: 1;
-      padding: 10px 15px;
-      font-size: 13px;
+    .stats .stat {
+      text-align: center;
+    }
+
+    .stats .stat span {
+      display: block;
+      font-size: 19px;
       font-weight: bold;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
+      color: #fff;
+      margin-bottom: 5px;
     }
 
-    .profile-actions .edit {
+    .stats .stat label {
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    .progress-bar {
+      background-color: #333;
+      border-radius: 25px;
+      overflow: hidden;
+      margin: 15px 0;
+      height: 15px;
+    }
+
+    .progress-bar .progress {
+      background: linear-gradient(135deg, #8e44ad, #4a0072);
+      height: 100%;
+      width: 5%; /* ความคืบหน้า */
+    }
+
+    .support-section {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .support-section h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    .support-section .amount {
+      font-size: 28px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .support-section .donate-btn {
       background-color: #8e44ad;
       color: #fff;
-    }
-
-    .profile-actions .edit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0, 120, 255, 0.4);
-    }
-
-    .profile-actions .message {
-      background-color: #555;
-      color: #fff;
-    }
-
-    .profile-actions .message:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(40, 167, 69, 0.4);
-    }
-
-    .highlights {
-      display: flex;
-      overflow-x: auto;
       padding: 10px 20px;
-      gap: 10px;
-      margin: 15px 0;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .highlights .highlight {
-      min-width: 60px;
-      height: 60px;
-      background-color: #333;
-      border-radius: 50%;
+    .support-section .donate-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .social-share {
       display: flex;
       justify-content: center;
-      align-items: center;
+      margin-top: 15px;
+    }
+
+    .social-share a {
       color: #fff;
-      font-size: 13px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      flex-shrink: 0;
+      font-size: 24px;
+      margin: 0 10px;
+      transition: color 0.3s ease;
     }
 
-    .posts-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      padding: 10px 20px;
+    .social-share a:hover {
+      color: #8e44ad;
     }
 
-    .posts-grid .post {
-      width: 100%;
-      padding-top: 100%;
-      background-color: #1e1e1e;
-      border-radius: 10px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s;
+    .recent-donors {
+      margin-top: 20px;
     }
 
-    .posts-grid .post img {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .recent-donors h4 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      text-align: left;
+      color: #aaa;
     }
 
-    .posts-grid .post:hover {
-      transform: scale(1.03);
-      box-shadow: 0 4px 8px rgba(255, 65, 108, 0.4);
+    .recent-donors ul {
+      list-style: none;
+    }
+
+    .recent-donors li {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+    }
+
+    .recent-donors li span {
+      font-size: 14px;
+      color: #ddd;
     }
 
     footer {
-    position: sticky;
-    bottom: 0;
-    background-color: #111;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: -6px 0;
-    height: 60px;
-    border-top: 1px solid #333;
-  }
+      text-align: center;
+      margin-top: 20px;
+      color: #aaa;
+      font-size: 12px;
+    }
 
-  .menu-item {
-    text-decoration: none;
-    color: #fff;
-    text-align: center;
-    font-size: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: color 0.3s ease;
-  }
+    footer a {
+      color: #8e44ad;
+      text-decoration: none;
+    }
 
-  .menu-item .icon {
-    font-size: 19px;
-    margin-bottom: 5px;
-    margin-top: -6px;
-  }
-
-  .menu-item.active .icon {
-    color: #8e44ad;
-  }
-
-  .menu-item:hover .icon {
-    color: #ff005c;
-  }
-
-  .add-button {
-    position: relative;
-    width: 60px;
-    height: 60px;
-    background-color: #8e44ad;
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
-    transform: translateY(-20%);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-
-  .add-button:hover {
-    transform: translateY(-30%) scale(1.1);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.7);
-  }
-
-  footer span {
-    font-size: 11px;
-    margin-top: -7px;
-  }
+    footer a:hover {
+      color: #fff;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <span class="back-button" onclick="history.back()"><i class="fas fa-arrow-left"></i> กลับ</span>
-    <div class="title">โปรไฟล์</div>
-  </header>
-
-  <div class="profile-header">
-    <div class="cover-photo"></div>
-    <div class="profile-pic"></div>
-    <div class="username">@ฟีม</div>
-    <div class="bio">ยินดีต้อนรับสู่โปรไฟล์ของฉัน!</div>
-  </div>
-
-  <div class="profile-stats">
-    <div class="stat">
-      <span>3</span>
-      <label>โพสต์</label>
+  <div class="container">
+    <div class="header">
+      <img src="https://via.placeholder.com/120" alt="Creator">
+      <h2>ผู้พัฒนา: ฟีม ปิยะพงษ์</h2>
+      <p>ขอขอบคุณทุกท่าน</p>
     </div>
-    <div class="stat">
-      <span>9.5M</span>
-      <label>ผู้ติดตาม</label>
+    <div class="stats">
+      <div class="stat">
+        <span>0</span>
+        <label>ผู้สนับสนุน</label>
+      </div>
+      <div class="stat">
+        <span>฿0</span>
+        <label>ยอดสนับสนุนทั้งหมด</label>
+      </div>
+      <div class="stat">
+        <span>1</span>
+        <label>โปรเจ็กต์ที่สร้าง</label>
+      </div>
     </div>
-    <div class="stat">
-      <span>1</span>
-      <label>กำลังติดตาม</label>
+    <div class="progress-bar">
+      <div class="progress"></div>
+    </div>
+    <div class="support-section">
+      <h3>ร่วมสนับสนุนโปรเจ็กต์</h3>
+      <p class="amount">เป้าหมาย: ฿50,000,000</p>
+      <button class="donate-btn">สนับสนุนตอนนี้</button>
+      <div class="social-share">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-line"></i></a>
+      </div>
+      <div class="recent-donors">
+        <h4>ผู้สนับสนุนล่าสุด</h4>
+        <ul>
+          <li>
+            <span>@user456</span>
+            <span>฿1,000</span>
+          </li>
+          <li>
+            <span>@user789</span>
+            <span>฿500</span>
+          </li>
+          <li>
+            <span>@user101</span>
+            <span>฿2,000</span>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-
-  <div class="profile-actions">
-    <button class="edit">แก้ไขโปรไฟล์</button>
-    <button class="message">เเชร์โปรไฟล์</button>
-  </div>
-
-  <div class="highlights">
-    <div class="highlight">Story 1</div>
-    <div class="highlight">Story 2</div>
-    <div class="highlight">Story 3</div>
-    <div class="highlight">Story 4</div>
-  </div>
-
-  <div class="posts-grid">
-    <div class="post"><img src="https://via.placeholder.com/150" alt="Post"></div>
-    <div class="post"><img src="https://via.placeholder.com/150" alt="Post"></div>
-    <div class="post"><img src="https://via.placeholder.com/150" alt="Post"></div>
-    <div class="post"><img src="https://via.placeholder.com/150" alt="Post"></div>
-    <div class="post"><img src="https://via.placeholder.com/150" alt="Post"></div>
-    <div class="post"><img src="https://via.placeholder.com/150" alt="Post"></div>
- 
-  </div>
-  
   <footer>
-  <a href="#" class="menu-item active">
-    <div class="icon">
-      <i class="fa-solid fa-house"></i>
-    </div>
-    <span>หน้าแรก</span>
-  </a>
-  <a href="#" class="menu-item">
-    <div class="icon">
-      <i class="fa-solid fa-magnifying-glass"></i>
-    </div>
-    <span>ค้นหา</span>
-  </a>
-  <a href="#" class="add-button">
-    <i class="fa-solid fa-circle-plus"></i>
-  </a>
-  <a href="#" class="menu-item">
-    <div class="icon">
-      <i class="fa-solid fa-comments"></i>
-    </div>
-    <span>ข้อความ</span>
-  </a>
-  <a href="#" class="menu-item">
-    <div class="icon">
-      <i class="fa-solid fa-user"></i>
-    </div>
-    <span>โปรไฟล์</span>
-  </a>
-</footer>
+    <p>© 2024 โปรเจ็กต์โดย <a href="#">@developer123</a></p>
+  </footer>
 </body>
 </html>
